@@ -42,14 +42,14 @@ int main(int argc, char* argv[]) {
                 for (int j = 0; j < p; i++) {
                     int salida, llegada, pasajeros;
                     f >> salida >> llegada >> pasajeros;
-                    if (salida >= llegada) {
+                    if (salida >= m) {
                         cerr << "Instancia " << i << ", pedido " << j << ": la estación de salida "
-                             << "debe ser anterior a la de llegada" << endl;
+                             << "debe ser menor que m" << endl;
                         continue;
                     }
-                    if (llegada > m) {
+                    if (llegada <= salida) {
                         cerr << "Instancia " << i << ", pedido " << j << ": la estación de llegada "
-                             << "debe ser menor o igual que m" << endl;
+                             << "debe ser posterior a la de salida" << endl;
                         continue;
                     }
                     pedidos[j].salida = salida;
