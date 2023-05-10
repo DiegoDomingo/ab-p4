@@ -1,24 +1,66 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <queue>
 #include <chrono>
 using namespace std;
 using namespace chrono;
 
-class Pedido {
-public:
+struct Pedido {
     int salida;
     int llegada;
     int pasajeros;
+};
 
-    Pedido(int s, int l, int p) {
-        salida = s;
-        llegada = l;
-        pasajeros = p;
+struct Nodo {
+    int c;
+    int cEstimado;
+    int U;
+    bool esIzq; // en la teoría dice que hace falta para saber si se ha aceptado o cancelado el último pedido
+    Nodo *izq;
+    Nodo *der;
+
+    bool operator<(const Nodo& n) const {
+        return cEstimado < n.cEstimado;
     }
 };
 
-int main(int argc, char* argv[]) {
+Nodo* crearNodoRaiz() {
+    Nodo *nodo = new Nodo;
+    nodo->izq = NULL;
+    nodo->der = NULL;
+    nodo->esIzq = false;
+    return nodo;
+}
+
+Nodo* crearHijos(Nodo* nodo) {
+    Nodo *izquierdo = new Nodo;
+    izquierdo->izq = NULL;
+    izquierdo->der = NULL;
+    izquierdo->esIzq = true;
+
+    Nodo *derecho = new Nodo;
+    derecho->izq = NULL;
+    derecho->der = NULL;
+    derecho->esIzq = false;
+
+    nodo->izq = izquierdo;
+    nodo->der = derecho;
+}
+
+int comprobarPedidos(int n, int m, int p, vector<Pedido>& pedidos) {
+    priority_queue<Nodo*> nodosVivos;
+    Nodo* raiz = crearNodoRaiz();
+    int U = 0;
+    nodosVivos.push(raiz);
+    while (!nodosVivos.empty()) {
+        Nodo* nodoE = nodosVivos.top();
+        nodosVivos.pop();
+        crearHijos(nodoE);
+    }
+}
+
+int main(int argc, char *argv[]) {
     ifstream f(argv[1]);
     if (f.is_open()) {
         ofstream g(argv[2]);
@@ -60,7 +102,7 @@ int main(int argc, char* argv[]) {
                 // Procesar pedidos
                 // g << comprobarPedidos(n, m, p, pedidos) << " "
                 end = high_resolution_clock::now();
-                auto tiempo = duration_cast<nanoseconds>(end - start).count()/1E6;
+                auto tiempo = duration_cast<nanoseconds>(end - start).count() / 1E6;
                 // g << tiempo << endl;
             }
         }
