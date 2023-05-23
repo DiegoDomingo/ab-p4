@@ -65,7 +65,7 @@ bool esSolucion(int n, vector<Pedido>& pedidos, vector<int>& solucion, int k) {
     return true;
 }
 
-int ramPodaMinCoste(int n, int m, int p, vector<Pedido>& pedidos) {
+Nodo ramPodaMinCoste(int n, int m, int p, vector<Pedido>& pedidos) {
     priority_queue<Nodo> nodosVivos;
     Nodo raiz;
     Nodo mejorSolucion;
@@ -93,8 +93,7 @@ int ramPodaMinCoste(int n, int m, int p, vector<Pedido>& pedidos) {
             }
         }
     }
-    int ingreso = calcularIngreso(pedidos, mejorSolucion.solucion);
-    return ingreso;
+    return mejorSolucion;
 }
 
 int main(int argc, char *argv[]) {
@@ -138,7 +137,8 @@ int main(int argc, char *argv[]) {
                 }
                 start = high_resolution_clock::now();
                 // Procesar pedidos
-                g << ramPodaMinCoste(n, m, p, pedidos) << " ";
+                Nodo nodo = ramPodaMinCoste(n, m, p, pedidos);
+                g << calcularIngreso(pedidos, nodo.solucion) << " ";
                 end = high_resolution_clock::now();
                 auto tiempo = duration_cast<nanoseconds>(end - start).count() / 1E6;
                 g << tiempo << endl;
