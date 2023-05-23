@@ -2,12 +2,10 @@
 #include <fstream>
 #include <vector>
 #include <queue>
-#include <queue>
 #include <chrono>
 using namespace std;
 using namespace chrono;
 
-struct Pedido {
 struct Pedido {
     int salida;
     int llegada;
