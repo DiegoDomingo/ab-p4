@@ -31,5 +31,8 @@
 *.out
 *.app
 
+# VS Code
 .vscode
+
+# Fichero de salida
 resultados.txt
