@@ -1,0 +1,38 @@
+Alonso Gutiérrez, Simón     821038@unizar.es    a821038
+Domingo Ralla, Diego        818637@unizar.es    a818637
+
+Se ha elaborado un programa que resuelve un problema de optimización, en el que
+hay una línea ferroviaria y una serie de pedidos, y se quiere obtener el máximo
+ingreso posible, teniendo en cuenta que es posible que no se puedan aceptar
+todos los pedidos, debido a las limitaciones de capacidad del tren. Por ello, la
+política de la empresa es aceptar o rechazar completamente un pedido de reserva.
+
+Se ha resuelto el problema con dos algoritmos: uno de ramificación y poda, en el
+fichero transporte.cc, y uno de programación lineal entera, en el fichero
+transporte-ilp.cc.
+
+Ambos programas reciben dos parámetros como entrada:
+•   pruebas.txt incluye varias instancias del problema para su resolución. Cada
+    bloque del fichero es una instancia. La primera línea de cada bloque tiene
+    tres enteros: la capacidad n del tren, el número m (máximo 7) de la estación
+    final de línea y el número de pedidos total p (máximo 22). Las p líneas
+    siguientes representan los pedidos. Por cada uno hay tres enteros: estación
+    de salida, estación de llegada y número de pasajeros. El bloque final son
+    tres enteros igual a cero.
+•   resultados.txt tiene un número de líneas igual al número de bloques del
+    fichero de entrada, excepto el bloque final. Cada línea incluye dos números:
+    el valor del máximo ingreso total y el tiempo de ejecución.
+
+En el caso del programa de programación lineal, este utiliza la herramienta IBM
+ILOG CPLEX Optimization Studio. Esta se ha instalado en una máquina Linux con
+Ubuntu. 
+
+Para poder compilar el programa, se debe haber instalado la herramienta
+y haber cambiado la ruta de los directorios cplex y concert en el Makefile,
+adaptándolas al directorio donde se haya decidido instalar. Cabe destacar que,
+si se emplea con Windows, no se puede utilizar el compilador MinGW. Para la
+compilación, basta con utilizar el comando "make", y después ejecutar con
+"./transporte-ilp pruebas.txt resultados.txt"
+
+Para el programa de ramificación y poda se incluye un script ejecutar.sh que 
+compila y ejecuta el programa con los casos de prueba del fichero pruebas.txt.
