@@ -76,6 +76,11 @@ int resolverILP(int n, int m, int p, vector<Pedido>& pedidos) {
 }
 
 int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        cerr << "Uso: transporte <pruebas.txt> <resultados.txt>" << endl;
+        return -1;
+    }
+    
     ifstream f(argv[1]);
     if (f.is_open()) {
         ofstream g(argv[2]);
