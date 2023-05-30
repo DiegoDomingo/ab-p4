@@ -27,12 +27,19 @@ En el caso del programa de programación lineal, este utiliza la herramienta IBM
 ILOG CPLEX Optimization Studio. Esta se ha instalado en una máquina Linux con
 Ubuntu. 
 
+Se puede instalar la herramienta desde el siguiente enlace:
+https://www-40.ibm.com/isc/esd/dswdown/home?ticket=Xa.2%2FXb.Z7LJBh8BR1xYjAeLl6R9h5Ek%2FXc.%2FXd.%2FXf.%2FXg.12312801%2FXi.%2FXY.scholars%2FXZ.nTQS9gGBsWPncZIgorgjcU8X3tjGC6NT&partNumber=G0798ML
+Es necesario crear cuenta en IBM con un correo académico. La instalación es
+guiada, y se debe hacer desde root. Se puede elegir el directorio de
+instalación, pero en este caso se ha elegido mantener el directorio por defecto,
+que es /opt/ibm/ILOG/CPLEX_Studio2211.
+
 Para poder compilar el programa, se debe haber instalado la herramienta
 y haber cambiado la ruta de los directorios cplex y concert en el Makefile,
 adaptándolas al directorio donde se haya decidido instalar. Cabe destacar que,
 si se emplea con Windows, no se puede utilizar el compilador MinGW. Para la
 compilación, basta con utilizar el comando "make", y después ejecutar con
-"./transporte-ilp pruebas.txt resultados.txt"
+"./transporte-ilp pruebas.txt resultados.txt".
 
 Para el programa de ramificación y poda se incluye un script ejecutar.sh que 
 compila y ejecuta el programa con los casos de prueba del fichero pruebas.txt.
